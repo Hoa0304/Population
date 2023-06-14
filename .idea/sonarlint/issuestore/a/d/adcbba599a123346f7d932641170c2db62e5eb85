@@ -1,0 +1,17 @@
+
+o	java:S116"SRename this field "CccdText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ë…Š8ÿ¹¼Ë‹1
+£
+java:S1186h"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”‡ìÇúÿÿÿÿ8€º¼Ë‹1
+t
+java:S2737Z"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8‚º¼Ë‹1
+E	java:S108b")Either remove or fill this block of code.(É®£8„º¼Ë‹1
+œ
+java:S1130‚"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ÖÕùæÿÿÿÿÿ8Ô¤÷Ï‹1
+u
+java:S2737"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8†º¼Ë‹1
+Y	java:S125“"<This block of commented-out lines of code should be removed.(Ñ„à8‡º¼Ë‹1
+Y	java:S125¢"<This block of commented-out lines of code should be removed.(õã¼¹8‡º¼Ë‹1
+G
+java:S1128"*Remove this unused import 'java.sql.Date'.(ÙÀ½Ê8Û¤÷Ï‹1
+T
+java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ8Û¤÷Ï‹1

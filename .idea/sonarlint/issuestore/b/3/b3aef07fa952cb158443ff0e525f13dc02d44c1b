@@ -1,0 +1,14 @@
+
+v
+java:S1488"[Immediately return this expression instead of assigning it to the temporary variable "con".(ªŸ°ˆıÿÿÿÿ
+]
+java:S2095+"GUse try-with-resources or close this "Statement" in a "finally" clause.(Êë‹
+O
+java:S1118":Add a private constructor to hide the implicit public one.(Ô\
+h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ïìôëøÿÿÿÿ
+D
+java:S2115")Add password protection to this database.(ªŸ°ˆıÿÿÿÿ
+m
+java:S2737"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+”
+java:S1130F"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ÒÀıˆüÿÿÿÿ
