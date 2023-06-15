@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ttchoa22ite.population.controllers.login.HomeController">
+<AnchorPane style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ttchoa22ite.population.controllers.login.ChatController">
    <children>
       <AnchorPane prefHeight="616.0" prefWidth="993.0" style="-fx-background-color: #030307; -fx-background-radius: 15;">
          <children>
@@ -122,7 +123,33 @@
                   </MenuButton>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="91.0" layoutY="56.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;" />
+            <AnchorPane layoutX="91.0" layoutY="56.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+               <children>
+                  <AnchorPane fx:id="onl" prefHeight="531.0" prefWidth="299.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20 0 0 20;" />
+                  <TextField layoutX="351.0" layoutY="453.0" prefHeight="53.0" prefWidth="446.0" promptText="Nhập tin nhắn của bạn" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="810.0" layoutY="456.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="61.0" style="-fx-background-color: #131022;">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/home/icons8-paper-plane-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="732.0" layoutY="456.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="62.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
+                     <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icon/home/icons8-smile-100.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
          </children>
       </AnchorPane>
    </children>

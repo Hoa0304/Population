@@ -62,7 +62,7 @@
                         </Button>
                     </children>
                 </VBox>
-                <AnchorPane layoutX="91.0" layoutY="56.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+                <AnchorPane layoutX="117.0" layoutY="84.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
                     <children>
                         <Label layoutX="34.0" layoutY="34.0" text="NHÂN HỘ KHẨU" textFill="WHITE">
                             <font>
@@ -76,6 +76,11 @@
                         </Label>
                         <Pane layoutX="592.0" layoutY="47.0" prefHeight="246.0" prefWidth="261.0" style="-fx-background-radius: 20;" styleClass="linear-grad" stylesheets="@../../css/HomeStyling.css">
                             <children>
+                                <ImageView fitHeight="141.0" fitWidth="123.0" layoutX="69.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="rounded-image:10">
+                                    <image>
+                                        <Image url="@../../icon/home/hoa.jpg" />
+                                    </image>
+                                </ImageView>
                                 <Label layoutX="35.0" layoutY="146.0" text="Trần Thị Cẩm Hoa" textFill="WHITE">
                                     <font>
                                         <Font size="24.0" />
@@ -86,11 +91,6 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Label>
-                                <ImageView fitHeight="141.0" fitWidth="123.0" layoutX="69.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../icon/home/hoa.jpg" />
-                                    </image>
-                                </ImageView>
                                 <Label alignment="CENTER" layoutX="59.0" layoutY="233.0" prefHeight="27.0" prefWidth="158.0" styleClass="label1" stylesheets="@../../css/HomeStyling.css" text="NGƯỜI QUẢN LÝ" textFill="WHITE">
                                     <font>
                                         <Font size="13.0" />

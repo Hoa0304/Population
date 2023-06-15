@@ -12,8 +12,8 @@ public class ConnectionDB {
     public static Connection DAO() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/demographic_management", "root", "");
-            return con;
+             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bigproject", "root", "");
+            return conn;
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println("Connect : "+ex.getMessage());
             return null;

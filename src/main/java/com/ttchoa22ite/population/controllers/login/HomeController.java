@@ -38,9 +38,11 @@ public class HomeController {
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ResidentController.class.getName()).log(Level.SEVERE, null, ex);
+           Logger.getLogger(ResidentController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+
 
 }
 
