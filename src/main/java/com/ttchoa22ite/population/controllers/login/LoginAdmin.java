@@ -96,7 +96,7 @@ public class LoginAdmin implements Initializable {
 //            Stage stage = (Stage) node.getScene().getWindow();
 //
 //            stage.close();
-                        Parent root = FXMLLoader.load(((getClass().getResource("home.fxml"))));
+                        Parent root = FXMLLoader.   load(((getClass().getResource("home.fxml"))));
                         Stage primaryStage = new Stage();
                         primaryStage.initStyle(StageStyle.TRANSPARENT);
                         Scene scene = new Scene(root);

@@ -44,7 +44,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../css/HomeStyling.css" text="Nhắn tin" textFill="#a868a0">
+                        <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#getchat" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../../css/HomeStyling.css" text="Nhắn tin" textFill="#a868a0">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

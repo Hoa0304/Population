@@ -14,6 +14,8 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
 <AnchorPane style="-fx-background-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ttchoa22ite.population.controllers.login.ChatController">
    <children>
@@ -126,7 +128,7 @@
             <AnchorPane layoutX="91.0" layoutY="56.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
                <children>
                   <AnchorPane fx:id="onl" prefHeight="531.0" prefWidth="299.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20 0 0 20;" />
-                  <TextField layoutX="351.0" layoutY="453.0" prefHeight="53.0" prefWidth="446.0" promptText="Nhập tin nhắn của bạn" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
+                  <TextField layoutX="351.0" layoutY="453.0" prefHeight="53.0" prefWidth="446.0" promptText="Nhập tin nhắn của bạn" style="-fx-background-color: #2A2739; -fx-background-radius: 20;-fx-text-fill: rgba(255,255,255,0.7)">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -140,7 +142,92 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="732.0" layoutY="456.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="62.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
+                  <TextFlow fx:id="emojiList" layoutX="493.0" layoutY="288.0" prefHeight="182.0" prefWidth="275.0" visible="false">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😀" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😁" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😂" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😃" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😄" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😅" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😆" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😇" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😈" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😉" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😊" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😋" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😌" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😍" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😎" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😏" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😐" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😑" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😒" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😓" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😔" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😕" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😖" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😗" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😘" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😙" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😚" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😛" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😜" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😝" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😞" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😟" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😠" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😡" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😢" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😣" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😤" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😥" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😦" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😧" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😨" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😩" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😪" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😫" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😬" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😭" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😮" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😯" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😰" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😱" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😲" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😳" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😴" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😵" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😶" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😷" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😸" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😹" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😺" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😻" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😼" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😽" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😾" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😿" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙀" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙁" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙂" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙃" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙄" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙅" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙆" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙇" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙈" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙉" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙊" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙋" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙌" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙍" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙎" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙏" />
+
+                     </children>
+                  </TextFlow>
+                  <Button layoutX="732.0" layoutY="456.0" mnemonicParsing="false" onAction="#emojiAction" prefHeight="47.0" prefWidth="62.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>

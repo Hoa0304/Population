@@ -1,29 +1,25 @@
 
-X
-java:S1141î"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8×ı„Œ1
-E
-java:S1604{"(Make this anonymous inner class a lambda(İâ…„8Ùı„Œ1
-o	java:S116$"SRename this field "CccdText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ë…Š8ôı„Œ1
-¤
-java:S1186Ç"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”‡ìÇúÿÿÿÿ8ôı„Œ1
-u
-java:S2737­"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8ı„Œ1
-F	java:S108Á")Either remove or fill this block of code.(É®£8†ı„Œ1
-œ
-java:S1130á"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ÖÕùæÿÿÿÿÿ8ˆı„Œ1
-u
-java:S2737€"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û8‰ı„Œ1
-Y	java:S125"<This block of commented-out lines of code should be removed.(Ñ„à8Œı„Œ1
-Y	java:S125"<This block of commented-out lines of code should be removed.(õã¼¹8Œı„Œ1
-;
-java:S1128"Remove this duplicated import.(ûÕ‡»8ı„Œ1
-R
-java:S1128"5Remove this unused import 'javafx.scene.paint.Color'.(Ïî£à8ı„Œ1
-P
-java:S1128"4Remove this unused import 'javafx.stage.StageStyle'.(¶©28ı„Œ1
-T
-java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ8ı„Œ1
 Q
-java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8ı„Œ1
-R
-java:S1128"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8ı„Œ1
+java:S1141ñ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
+>
+java:S1604{"(Make this anonymous inner class a lambda(İâ…„
+h	java:S116$"SRename this field "CccdText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ë…Š
+
+java:S1186Ê"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”‡ìÇúÿÿÿÿ
+=
+java:S1110™"!Remove these useless parentheses.(ş…ÉÀûÿÿÿÿ
+n
+java:S2737°"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+?	java:S108Ä")Either remove or fill this block of code.(É®£
+•
+java:S1130ä"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ÖÕùæÿÿÿÿÿ
+n
+java:S2737ƒ"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
+R	java:S125‘"<This block of commented-out lines of code should be removed.(Ñ„à
+R	java:S125 "<This block of commented-out lines of code should be removed.(õã¼¹
+4
+java:S1128"Remove this duplicated import.(ûÕ‡»
+D
+java:S1128".Remove this unused import 'javafx.scene.Node'.(ÑÖ¬ï
+M
+java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ

@@ -5,11 +5,11 @@ r	java:S117V"QRename this local variable to match the regular expression '^[a-
 s	java:S117·"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚®ïìûÿÿÿÿ8´à²ƒŒ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Æ·È†8¶à²ƒŒ1
 q
-java:S2095>"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¨ï¯şÿÿÿÿ8›á²ƒŒ1
-q
 java:S2095]"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(êÖ Šÿÿÿÿÿ8ê¶ƒŒ1
 q
 java:S2095p"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(êÖ Šÿÿÿÿÿ8›á²ƒŒ1
+q
+java:S2095>"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¨ï¯şÿÿÿÿ8›á²ƒŒ1
 Y
 java:S2589R"7Remove this expression which always evaluates to "true"(â¹şÃùÿÿÿÿ8›á²ƒŒ1
 o

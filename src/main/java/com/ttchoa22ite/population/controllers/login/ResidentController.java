@@ -149,15 +149,18 @@ public class ResidentController {
     @FXML
     void getChat(MouseEvent event) {
 
-            try {
-                Parent parent = FXMLLoader.load(getClass().getResource("chat.fxml"));
-                Scene scene = new Scene(parent);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+        try {
+            Parent parent = FXMLLoader.load(((getClass().getResource("chat.fxml"))));
+            Stage primaryStage = new Stage();
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(parent);
+            //set transparent
+            scene.setFill(Color.TRANSPARENT);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     @FXML
