@@ -1,25 +1,0 @@
-
-Q
-java:S1141ñ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ
->
-java:S1604{"(Make this anonymous inner class a lambda(İâ…„
-h	java:S116$"SRename this field "CccdText" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ë…Š
-
-java:S1186Ê"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(”‡ìÇúÿÿÿÿ
-=
-java:S1110™"!Remove these useless parentheses.(ş…ÉÀûÿÿÿÿ
-n
-java:S2737°"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
-?	java:S108Ä")Either remove or fill this block of code.(É®£
-•
-java:S1130ä"yRemove the declaration of thrown exception 'java.lang.ClassNotFoundException', as it cannot be thrown from method's body.(ÖÕùæÿÿÿÿÿ
-n
-java:S2737ƒ"WAdd logic to this catch clause or eliminate it and rethrow the exception automatically.(ö™û
-R	java:S125‘"<This block of commented-out lines of code should be removed.(Ñ„à
-R	java:S125 "<This block of commented-out lines of code should be removed.(õã¼¹
-4
-java:S1128"Remove this duplicated import.(ûÕ‡»
-D
-java:S1128".Remove this unused import 'javafx.scene.Node'.(ÑÖ¬ï
-M
-java:S1128"7Remove this unused import 'java.text.SimpleDateFormat'.(ú¡ÙÛ

@@ -2,14 +2,12 @@ package com.ttchoa22ite.population.controllers.login;
 import com.ttchoa22ite.population.utils.ConnectionDB;
 import com.ttchoa22ite.population.DAO.ResidentDAO;
 import com.ttchoa22ite.population.models.Resident;
-import com.ttchoa22ite.population.utils.ConnectionDB;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,7 +22,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -95,8 +92,6 @@ public class ResidentController {
     @FXML
     private TextField sshkText;
 
-    @FXML
-    private Button insertResident;
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
@@ -154,12 +149,27 @@ public class ResidentController {
             Stage primaryStage = new Stage();
             primaryStage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(parent);
-            //set transparent
             scene.setFill(Color.TRANSPARENT);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    @FXML
+    void getHome(MouseEvent event) {
+
+        try {
+            Parent parent = FXMLLoader.load(((getClass().getResource("home.fxml"))));
+            Stage primaryStage = new Stage();
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+            Scene scene = new Scene(parent);
+            scene.setFill(Color.TRANSPARENT);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
