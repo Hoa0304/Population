@@ -4,10 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -125,24 +127,10 @@
                   </MenuButton>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="91.0" layoutY="56.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
+            <AnchorPane layoutX="95.0" layoutY="70.0" prefHeight="531.0" prefWidth="886.0" style="-fx-background-color: #131022; -fx-background-radius: 10;">
                <children>
-                  <AnchorPane fx:id="onl" prefHeight="531.0" prefWidth="299.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20 0 0 20;" />
-                  <TextField layoutX="351.0" layoutY="453.0" prefHeight="53.0" prefWidth="446.0" promptText="Nhập tin nhắn của bạn" style="-fx-background-color: #2A2739; -fx-background-radius: 20;-fx-text-fill: rgba(255,255,255,0.7)">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <Button layoutX="809.0" layoutY="456.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="38.0" style="-fx-background-color: #131022;">
-                     <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../icon/home/icons8-send-96.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <TextFlow fx:id="emojiList" layoutX="493.0" layoutY="288.0" prefHeight="182.0" prefWidth="275.0" visible="false">
+                  <AnchorPane fx:id="onl1" prefHeight="531.0" prefWidth="299.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20 0 0 20;" />
+                  <TextFlow fx:id="emojiList1" layoutX="493.0" layoutY="288.0" prefHeight="182.0" prefWidth="275.0" visible="false">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😀" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="😁" />
@@ -224,19 +212,42 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙍" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙎" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="🙏" />
-
                      </children>
                   </TextFlow>
-                  <Button layoutX="732.0" layoutY="456.0" mnemonicParsing="false" onAction="#emojiAction" prefHeight="47.0" prefWidth="62.0" style="-fx-background-color: #2A2739; -fx-background-radius: 20;">
-                     <graphic>
-                        <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../icon/home/icons8-emotion-48.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children></AnchorPane>
+                  <VBox layoutX="333.0" layoutY="18.0" prefHeight="498.0" prefWidth="516.0" style="-fx-background-color: #131022;">
+                     <children>
+                        <TextArea fx:id="chatArea" editable="false" prefHeight="454.0" prefWidth="516.0" style="-fx-background-radius: 20; -fx-background-color: #131022;" />
+                        <HBox prefHeight="47.0" prefWidth="516.0">
+                           <children>
+                              <TextField fx:id="messageField" prefHeight="40.0" prefWidth="423.0" promptText="Nhập tin nhắn của bạn" style="-fx-background-color: #2A2739; -fx-background-radius: 20;-fx-text-fill: rgba(255,255,255,0.7)">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </TextField>
+                              <Button fx:id="emojiButton" mnemonicParsing="false" onAction="#emojiAction" prefHeight="34.0" prefWidth="43.0" style="-fx-background-color: #131022; -fx-background-radius: 20;">
+                                 <graphic>
+                                    <ImageView fitHeight="34.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/home/icons8-emotion-48.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="sendButton" mnemonicParsing="false" prefHeight="47.0" prefWidth="38.0" style="-fx-background-color: #131022;">
+                                 <graphic>
+                                    <ImageView fitHeight="31.0" fitWidth="34.0" onMouseClicked="#sendMessage" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/home/icons8-send-96.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>

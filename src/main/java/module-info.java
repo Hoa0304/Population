@@ -11,12 +11,13 @@ module com.ttchoa22ite.population {
     exports com.ttchoa22ite.population;
 
 
-
-    opens com.ttchoa22ite.population.controllers.login to javafx.fxml;
+    opens com.ttchoa22ite.population.controllers.login to javafx.fxml, javafx.graphics;
     exports com.ttchoa22ite.population.controllers.login;
 
 
-    opens com.ttchoa22ite.population.models to java.sql;
+
+
+    opens com.ttchoa22ite.population.models to java.sql, javafx.graphics;
     exports com.ttchoa22ite.population.models;
 
 

@@ -1,6 +1,0 @@
-
-m	java:S117X"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤·¯û8é’âÊ‹1
-m	java:S116"RRename this field "NOphone" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¿Ùò8ñ’âÊ‹1
-o	java:S100T"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¢§¢‡ýÿÿÿÿ8ø’âÊ‹1
-G
-java:S1128"*Remove this unused import 'java.sql.Date'.(ÙÀ½Ê8ú’âÊ‹1
