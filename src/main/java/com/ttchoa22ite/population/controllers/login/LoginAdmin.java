@@ -1,8 +1,7 @@
 package com.ttchoa22ite.population.controllers.login;
 
-
-
 import com.ttchoa22ite.population.utils.ConnectionDB;
+
 
 import java.net.URL;
 import java.sql.Connection;
@@ -23,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 public class LoginAdmin implements Initializable {
 
@@ -36,24 +35,13 @@ public class LoginAdmin implements Initializable {
     @FXML
     private Label lblErrors;
 
-
-
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
 
-
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-
-
-        // TODO
+        con = ConnectionDB.DAO();
         if (con == null) {
             lblErrors.setTextFill(Color.TOMATO);
             lblErrors.setText("Lỗi máy chủ: Kiểm tra lại");
@@ -70,82 +58,61 @@ public class LoginAdmin implements Initializable {
     @FXML
     void handleButtonAction(MouseEvent event) {
         if (event.getSource() == btnSignin) {
-
             String username = txtUsername.getText();
             String password = txtPassword.getText();
             if (username.isEmpty() || password.isEmpty()) {
                 setLblError(Color.TOMATO, "Thông tin đăng nhập trống");
-
             } else {
-
-                String sql = "SELECT * FROM login Where username = ? and password = ?";
                 try {
+                    String sql = "SELECT * FROM login WHERE username = ?";
                     preparedStatement = con.prepareStatement(sql);
                     preparedStatement.setString(1, username);
-                    preparedStatement.setString(2, password);
-                    System.out.println(""+username);
                     resultSet = preparedStatement.executeQuery();
-                    if (!resultSet.next()) {
-                        setLblError(Color.TOMATO, "Nhập đúng Tên đăng nhập / Mật Khẩu");
-
+                    if (resultSet.next()) {
+                        String hashedPassword = resultSet.getString("password");
+                        if  (BCrypt.checkpw(password, hashedPassword)) {
+                            setLblError(Color.GREEN, "Đăng nhập thành công..Đang chuyển hướng..");
+                            Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+                            Stage primaryStage = new Stage();
+                            primaryStage.initStyle(StageStyle.TRANSPARENT);
+                            Scene scene = new Scene(root);
+                            scene.setFill(Color.TRANSPARENT);
+                            primaryStage.setScene(scene);
+                            primaryStage.show();
+                        } else {
+                            setLblError(Color.TOMATO, "Nhập đúng Tên đăng nhập / Mật Khẩu");
+                        }
                     } else {
-                        setLblError(Color.GREEN, "Đăng nhập thành công..Đang chuyển hướng..");
-//                        btnSignin.getScene().getWindow().hide();
-//                    FXMLLoader loader = new FXMLLoader();
-//                        Node node = (Node) event.getSource();
-//            Stage stage = (Stage) node.getScene().getWindow();
-//
-//            stage.close();
-                        Parent root = FXMLLoader.   load(((getClass().getResource("home.fxml"))));
-                        Stage primaryStage = new Stage();
-                        primaryStage.initStyle(StageStyle.TRANSPARENT);
-                        Scene scene = new Scene(root);
-                        //set transparent
-                        scene.setFill(Color.TRANSPARENT);
-                        primaryStage.setScene(scene);
-                        primaryStage.show();
-
+                        setLblError(Color.TOMATO, "Nhập đúng Tên đăng nhập / Mật Khẩu");
                     }
-                    preparedStatement.close();
-                    resultSet.close();
-                    con.close();
                 } catch (SQLException ex) {
-
-                    System.err.println(ex.getMessage());
-
+                    setLblError(Color.TOMATO, "Lỗi truy vấn cơ sở dữ liệu");
+                    ex.printStackTrace();
                 } catch (Exception e) {
-e.printStackTrace();                }
-                // Khoi finally duoc su dung de dong cac resource
-                try {
-                    if (resultSet != null) {
-                        resultSet.close();
+                    setLblError(Color.TOMATO, "Lỗi không xác định");
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (resultSet != null) {
+                            resultSet.close();
+                        }
+                        if (preparedStatement != null) {
+                            preparedStatement.close();
+                        }
+                        if (con != null) {
+                            con.close();
+                        }
+                    } catch (SQLException se) {
+                        se.printStackTrace();
                     }
-                } catch (SQLException ignored) {
                 }
-                try {
-                    if (con != null) {
-                        con.close();
-                    }
-                } catch (SQLException se) {
-                    se.printStackTrace();
-                }// Ket thuc khoi finally
             }
-
-
         }
     }
-
-
-
-
-
-
 
     private void setLblError(Color color, String text) {
         lblErrors.setTextFill(color);
         lblErrors.setText(text);
         System.out.println(text);
     }
-
-
 }

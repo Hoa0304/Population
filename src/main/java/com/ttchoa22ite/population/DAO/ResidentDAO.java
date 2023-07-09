@@ -2,65 +2,72 @@ package com.ttchoa22ite.population.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import com.ttchoa22ite.population.models.Resident;
 import com.ttchoa22ite.population.utils.ConnectionDB;
+
 public class ResidentDAO {
-    static Connection con = null;
-    static PreparedStatement pstmt = null;
-    static Statement stm ;
-    ResultSet resultSet = null;
-     public ResidentDAO(){
+    private Connection conn;
 
-    con = ConnectionDB.DAO();
-         try {
-             stm = con.createStatement();
-         } catch (SQLException e) {
-             throw new RuntimeException(e);
-         }
-     }
-    public static Resident searchResident (String residentName) throws SQLException,ClassNotFoundException{
-        String selectStmt = "SELECT * FROM resident WHERE name="+residentName;
+    public ResidentDAO() {
+        conn = ConnectionDB.DAO();
+    }
 
-        //Execute SELECT statement
+    public Resident searchResident(String residentName) throws SQLException {
+        String selectStmt = "SELECT * FROM resident WHERE name = ?";
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
         try {
-            ResultSet rs = ConnectionDB.dbExecuteQuery(selectStmt);
+            pstmt = conn.prepareStatement(selectStmt);
+            pstmt.setString(1, residentName);
+            rs = pstmt.executeQuery();
 
             return getResidentFromResultSet(rs);
-        }catch (SQLException e){
-            System.out.println("SQL select operation has been failed: " + e);
-            //Return exception
+        } catch (SQLException e) {
+            System.out.println("SQL select operation has failed: " + e);
             throw e;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
     }
 
-    private static Resident getResidentFromResultSet(ResultSet resultSet)throws SQLException{
-        Resident r = null;
+    private Resident getResidentFromResultSet(ResultSet resultSet) throws SQLException {
+        Resident resident = null;
 
-        if (resultSet.next()){
-            r = new Resident();
-            r.setId(resultSet.getInt("id"));
-            r.setSshk(resultSet.getString("sshk"));
-            r.setCccd(resultSet.getString("cccd"));
-            r.setName(resultSet.getString("name"));
-            r.setNOphone(resultSet.getString("NOphone"));
-            r.setAddress(resultSet.getString("address"));
-            r.setJob(resultSet.getString("job"));
-
+        if (resultSet.next()) {
+            resident = new Resident();
+            resident.setId(resultSet.getInt("id"));
+            resident.setSshk(resultSet.getString("sshk"));
+            resident.setCccd(resultSet.getString("cccd"));
+            resident.setName(resultSet.getString("name"));
+            resident.setNOphone(resultSet.getString("NOphone"));
+            resident.setAddress(resultSet.getString("address"));
+            resident.setJob(resultSet.getString("job"));
         }
-        return r;
+
+        return resident;
     }
 
-
-
-    public static ObservableList<Resident> getAllresident() throws SQLException{
-         Connection conn = ConnectionDB.DAO();
-         PreparedStatement stmt = null;
+    public ObservableList<Resident> getAllResidents() throws SQLException {
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
         ObservableList<Resident> residentsList = FXCollections.observableArrayList();
+
         try {
-            stmt = conn.prepareStatement("SELECT * from resident");
-            rs = stmt.executeQuery();
+            pstmt = conn.prepareStatement("SELECT * FROM resident");
+            rs = pstmt.executeQuery();
+
             while (rs.next()) {
                 Resident resident = new Resident();
                 resident.setId(rs.getInt("id"));
@@ -76,141 +83,82 @@ public class ResidentDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
-            if(rs!=null) rs.close();
-            if(stmt!=null)  stmt.close();
-            if(conn !=null) conn.close();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
+
         return residentsList;
     }
-    public static void updateResident (String sshk, String name, String sex,String cccd,String NOphone,String address,String job ) throws SQLException, ClassNotFoundException {
-       Connection conn = ConnectionDB.DAO();
-       PreparedStatement stmt = null;
-        String updateStmt =
 
-                "UPDATE resident SET name = '"+name+"', sex = '"+sex+"', cccd = '"+cccd+"', NOphone = '"+NOphone+"', address = '"+address+"', job = '"+job+"' WHERE sshk = '"+sshk+"'";
-        try {
-            stmt = conn.prepareStatement(updateStmt);
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.print("Error occurred while UPDATE Operation: " + e);
-            throw e;
-        }
-    }
-
-
-    public static void deleteResident(String sshk)throws SQLException,ClassNotFoundException{
-         Connection conn = ConnectionDB.DAO();
-         PreparedStatement stmt = null;
-        String updateStmt=
-
-                        "   DELETE FROM resident\n" +
-                        "         WHERE sshk ='"+ sshk+"'";
+    public void updateResident(String sshk, String name, String sex, String cccd, String NOphone, String address, String job) throws SQLException {
+        PreparedStatement pstmt = null;
+        String updateStmt = "UPDATE resident SET name = ?, sex = ?, cccd = ?, NOphone = ?, address = ?, job = ? WHERE sshk = ?";
 
         try {
-            stmt = conn.prepareStatement(updateStmt);
-            stmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.print("Xảy ra lỗi trong khi thao tác XÓA: " + e);
-            throw e;
-        }
-    }
-
-//    public static void deleteResidentWithName (String residentName) throws SQLException, ClassNotFoundException {
-//        String updateStmt =
-//                "BEGIN\n" +
-//                        "   DELETE FROM resident\n" +
-//                        "         WHERE name ="+ residentName+";\n" +
-//                        "   COMMIT;\n" +
-//                        "END;";
-//        try {
-//            ConnectionDB.dbExecuteUpdate(updateStmt);
-//        } catch (SQLException e) {
-//            System.out.print("Xảy ra lỗi trong khi thao tác XÓA: " + e);
-//            throw e;
-//        }
-//    }
-//
-//    public static void deleteResidentWithDate (Date residentDate) throws SQLException, ClassNotFoundException {
-//        String updateStmt =
-//                "BEGIN\n" +
-//                        "   DELETE FROM resident\n" +
-//                        "         WHERE name ="+ residentDate+";\n" +
-//                        "   COMMIT;\n" +
-//                        "END;";
-//        try {
-//            ConnectionDB.dbExecuteUpdate(updateStmt);
-//        } catch (SQLException e) {
-//            System.out.print("Xảy ra lỗi trong khi thao tác XÓA: " + e);
-//            throw e;
-//        }
-//    }
-
-//    public static void deleteResidentWithnOphone (Date residentnOphone) throws SQLException, ClassNotFoundException {
-//        String updateStmt =
-//                "BEGIN\n" +
-//                        "   DELETE FROM resident\n" +
-//                        "         WHERE name ="+ residentnOphone+";\n" +
-//                        "   COMMIT;\n" +
-//                        "END;";
-//        try {
-//            ConnectionDB.dbExecuteUpdate(updateStmt);
-//        } catch (SQLException e) {
-//            System.out.print("Xảy ra lỗi trong khi thao tác XÓA: " + e);
-//            throw e;
-//        }
-//    }
-public static int getId() throws SQLException {
-         Connection conn = ConnectionDB.DAO();
-    String selectStmt = "SELECT MAX(id) FROM resident";
-    try {
-        pstmt = conn.prepareStatement(selectStmt);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            return rs.getInt(1);
-        }
-    } catch (SQLException e) {
-        System.out.println("SQL select operation has been failed: " + e);
-        throw e;
-    }
-    return 0;
-}
-     private static int id;
-
-
-
-    public static void isertResident(String name, String cccd, String sshk, String NOphone, String address, String job, String sex, String birt) throws SQLException, ClassNotFoundException {
-       id = getId()+1;
-        Connection conn = ConnectionDB.DAO();
-        String insertStmt = "INSERT INTO resident (name, sex, cccd, NOphone, address, job, id, sshk, birt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try {
-             pstmt = conn.prepareStatement(insertStmt);
+            pstmt = conn.prepareStatement(updateStmt);
             pstmt.setString(1, name);
             pstmt.setString(2, sex);
             pstmt.setString(3, cccd);
             pstmt.setString(4, NOphone);
             pstmt.setString(5, address);
             pstmt.setString(6, job);
-            pstmt.setInt(7,id );
-            pstmt.setString(8, sshk);
-            pstmt.setString(9, birt);
+            pstmt.setString(7, sshk);
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.print("Error occurred while INSERT Operation: " + e);
+            System.out.println("Error occurred while UPDATE Operation: " + e);
             throw e;
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
-        //Execute DELETE operation
-//        try {
-//
-//            System.out.println(updateStmt);
-
-//        } catch (SQLException e) {
-//            System.out.print("Error occurred while DELETE Operation: " + e);
-//            throw e;
-//        }
     }
 
+    public void deleteResident(String sshk) throws SQLException {
+        PreparedStatement pstmt = null;
+        String deleteStmt = "DELETE FROM resident WHERE sshk = ?";
 
+        try {
+            pstmt = conn.prepareStatement(deleteStmt);
+            pstmt.setString(1, sshk);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error occurred while DELETE Operation: " + e);
+            throw e;
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        }
+    }
 
+    public void insertResident(String name, String cccd, String sshk, String NOphone, String address, String job, String sex, String birt) throws SQLException {
+        PreparedStatement pstmt = null;
+        String insertStmt = "INSERT INTO resident (name, sex, cccd, NOphone, address, job, sshk, birt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try {
+            pstmt = conn.prepareStatement(insertStmt);
+            pstmt.setString(1, name);
+            pstmt.setString(2, sex);
+            pstmt.setString(3, cccd);
+            pstmt.setString(4, NOphone);
+            pstmt.setString(5, address);
+            pstmt.setString(6, job);
+            pstmt.setString(7, sshk);
+            pstmt.setString(8, birt);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error occurred while INSERT Operation: " + e);
+            throw e;
+        } finally {
+            if (pstmt != null) {
+                pstmt.close();
+            }
+        }
+    }
 }

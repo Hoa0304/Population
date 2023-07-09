@@ -1,4 +1,5 @@
 package com.ttchoa22ite.population.controllers.login;
+
 import com.ttchoa22ite.population.utils.ConnectionDB;
 import com.ttchoa22ite.population.DAO.ResidentDAO;
 import com.ttchoa22ite.population.models.Resident;
@@ -21,11 +22,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static com.ttchoa22ite.population.DAO.ResidentDAO.*;
 
 public class ResidentController {
 
@@ -92,16 +91,15 @@ public class ResidentController {
     @FXML
     private TextField sshkText;
 
-    Connection con = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
-    public ResidentController(){
-        con = ConnectionDB.DAO();
+    private ResidentDAO residentDAO;
+
+    public ResidentController() {
+        residentDAO = new ResidentDAO();
     }
 
     public void initialize() {
         try {
-            ObservableList<Resident> residentList = ResidentDAO.getAllresident();
+            ObservableList<Resident> residentList = residentDAO.getAllResidents();
             residentView.setItems(residentList);
             residentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
             residentSshkCol.setCellValueFactory(new PropertyValueFactory<>("sshk"));
@@ -115,37 +113,31 @@ public class ResidentController {
         } catch (SQLException e) {
             System.err.println("Error: " + e);
         }
+
         residentView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                Resident selectrsd = residentView.getSelectionModel().getSelectedItem();
-                if(selectrsd!=null){
-                    CccdText.setText(selectrsd.getCccd());
-                    addressText.setText(selectrsd.getAddress());
-                    jobText.setText(selectrsd.getJob());
-                    dateText.setText(selectrsd.getBirt());
-                    phoneText.setText(selectrsd.getNOphone());
-                    sshkText.setText(selectrsd.getSshk());
-                    nameText.setText(selectrsd.getName());
-                    sexText.setText(selectrsd.getSex());
-                }else{
-                    CccdText.setText("");
-                    addressText.setText("");
-                    jobText.setText("");
-                    dateText.setText("");
-                    phoneText.setText("");
-                    sshkText.setText("");
-                    nameText.setText("");
-                    sexText.setText("");
+                Resident selectedResident = residentView.getSelectionModel().getSelectedItem();
+                if (selectedResident != null) {
+                    CccdText.setText(selectedResident.getCccd());
+                    addressText.setText(selectedResident.getAddress());
+                    jobText.setText(selectedResident.getJob());
+                    dateText.setText(selectedResident.getBirt());
+                    phoneText.setText(selectedResident.getNOphone());
+                    sshkText.setText(selectedResident.getSshk());
+                    nameText.setText(selectedResident.getName());
+                    sexText.setText(selectedResident.getSex());
+                } else {
+                    clearFields();
                 }
             }
         });
     }
+
     @FXML
     void getChat(MouseEvent event) {
-
         try {
-            Parent parent = FXMLLoader.load(((getClass().getResource("chat.fxml"))));
+            Parent parent = FXMLLoader.load(getClass().getResource("chat.fxml"));
             Stage primaryStage = new Stage();
             primaryStage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(parent);
@@ -155,13 +147,12 @@ public class ResidentController {
         } catch (IOException ex) {
             Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
     @FXML
     void getHome(MouseEvent event) {
-
         try {
-            Parent parent = FXMLLoader.load(((getClass().getResource("home.fxml"))));
+            Parent parent = FXMLLoader.load(getClass().getResource("home.fxml"));
             Stage primaryStage = new Stage();
             primaryStage.initStyle(StageStyle.TRANSPARENT);
             Scene scene = new Scene(parent);
@@ -171,16 +162,17 @@ public class ResidentController {
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
     @FXML
     void deleteAction(ActionEvent event) throws ClassNotFoundException, SQLException {
         try {
-            deleteResident(sshkText.getText());
+            String sshk = sshkText.getText();
+            residentDAO.deleteResident(sshk);
             Resident selectedResident = residentView.getSelectionModel().getSelectedItem();
             if (selectedResident != null) {
                 residentView.getItems().remove(selectedResident);
-                clearfield();
+                clearFields();
             }
         } catch (SQLException e) {
             throw e;
@@ -190,66 +182,72 @@ public class ResidentController {
     @FXML
     void editAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         try {
-            updateResident(sshkText.getText(), nameText.getText(),sexText.getText(), CccdText.getText(),phoneText.getText(), addressText.getText(), jobText.getText()); dateText.getText();
+            String sshk = sshkText.getText();
+            String name = nameText.getText();
+            String sex = sexText.getText();
+            String cccd = CccdText.getText();
+            String NOphone = phoneText.getText();
+            String address = addressText.getText();
+            String job = jobText.getText();
+            residentDAO.updateResident(sshk, name, sex, cccd, NOphone, address, job);
             Resident selectedResident = residentView.getSelectionModel().getSelectedItem();
             if (selectedResident != null) {
-                selectedResident.setName(nameText.getText());
-                selectedResident.setSshk(sshkText.getText());
-                selectedResident.setSex(sexText.getText());
+                selectedResident.setName(name);
+                selectedResident.setSshk(sshk);
+                selectedResident.setSex(sex);
                 selectedResident.setBirt(dateText.getText());
-                selectedResident.setCccd(CccdText.getText());
-                selectedResident.setNOphone(phoneText.getText());
-                selectedResident.setJob(jobText.getText());
+                selectedResident.setCccd(cccd);
+                selectedResident.setNOphone(NOphone);
+                selectedResident.setJob(job);
                 residentView.refresh();
-                clearfield();
+                clearFields();
             }
         } catch (SQLException e) {
+            // Handle the exception
         }
-
-    }
-
-    @FXML
-    void home(ActionEvent event) {
-
     }
 
     @FXML
     private void searchResident(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
         try {
-
-            Resident resident1 = ResidentDAO.searchResident(nameTextS.getText());
-
-            populateAndShowResident(resident1);
+            String residentName = nameTextS.getText();
+            Resident resident = residentDAO.searchResident(residentName);
+            populateAndShowResident(resident);
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
     }
 
-
     @FXML
-    private void populateAndShowResident(Resident resident1) throws ClassNotFoundException {
-        if (resident1 != null) {
-            populateResident(resident1);
+    private void populateAndShowResident(Resident resident) throws ClassNotFoundException {
+        if (resident != null) {
+            populateResident(resident);
         }
     }
 
     @FXML
-    private void populateResident(Resident resident1) throws ClassNotFoundException {
-
+    private void populateResident(Resident resident) throws ClassNotFoundException {
         ObservableList<Resident> residentData = FXCollections.observableArrayList();
-
-        residentData.add(resident1);
+        residentData.add(resident);
         residentView.setItems(residentData);
     }
 
     @FXML
     private void insertResident(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        try {
-            ResidentDAO.isertResident(sshkText.getText(), nameText.getText(), CccdText.getText(), phoneText.getText(), addressText.getText(), jobText.getText(), sexText.getText(),dateText.getText() );
+        try{
+            String name = nameText.getText();
+            String cccd = CccdText.getText();
+            String sshk = sshkText.getText();
+            String NOphone = phoneText.getText();
+            String address = addressText.getText();
+            String job = jobText.getText();
+            String sex = sexText.getText();
+            String birt = dateText.getText();
+            residentDAO.insertResident(name, cccd, sshk, NOphone, address, job, sex, birt);
             residentView.getItems().clear();
             try {
-                ObservableList<Resident> residentList = ResidentDAO.getAllresident();
+                ObservableList<Resident> residentList = residentDAO.getAllResidents();
                 residentView.setItems(residentList);
                 residentIdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
                 residentSshkCol.setCellValueFactory(new PropertyValueFactory<>("sshk"));
@@ -264,50 +262,21 @@ public class ResidentController {
                 System.err.println("Error: " + e);
             }
             residentView.refresh();
-            clearfield();
+            clearFields();
         } catch (SQLException e) {
             throw e;
         }
     }
-   private void clearfield(){
+
+    private void clearFields() {
+        CccdText.setText("");
         addressText.setText("");
+        dateText.setText("");
         jobText.setText("");
         nameText.setText("");
-        phoneText.setText("");
         nameTextS.setText("");
-        sshkText.setText("");
-        dateText.setText("");
+        phoneText.setText("");
         sexText.setText("");
-        CccdText.setText("");
-   }
-//    public Date date(){
-//
-////        Resident resident;
-////        resident = new Resident();
-////        dateText.setText(String.valueOf(resident.getDate()));
-//        String inputDate = dateText.getText();
-//
-//        try{
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//            java.util.Date date = formatter.parse(inputDate);
-//        } catch(Exception e) {
-//        }
-//        return Date.valueOf(inputDate);
-//    }
-
-//    public Date upDate(){
-////        Resident resident;
-////        resident = new Resident();
-////        upDateText.setText(String.valueOf(resident.getDate()));
-//        String inputDate = upDateText.getText();
-//
-//        try{
-//            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-//            java.util.Date date = formatter.parse(inputDate);
-//        } catch(Exception e) {
-//        }
-//        return Date.valueOf(inputDate);
-//    }
+        sshkText.setText("");
+    }
 }
-
-

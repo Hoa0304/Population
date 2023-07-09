@@ -1,32 +1,27 @@
 package com.ttchoa22ite.population.models;
 
-
 public final class Admin {
-    private String Username;
-    private String Password;
+    private final String username;
+    private final String password;
 
-    public String getUsername() {
-        return Username;
+    public Admin(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public void setUsername(String username) {
-        Username = username;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
-        return Password;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
+        return password;
     }
 
     @Override
     public String toString() {
         return "Admin{" +
-                "Username='" + Username + '\'' +
-                ", Password='" + Password + '\'' +
+                "Username='" + username + '\'' +
+                ", Password='" + password + '\'' +
                 '}';
     }
 }
-
